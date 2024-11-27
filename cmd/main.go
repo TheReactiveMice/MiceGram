@@ -15,10 +15,10 @@ import (
 var upgrader = websocket.Upgrader{}
 
 func GenerateProfile(profile *ipc.UserProfile) {
-	rsaPrivate, rsaPublic := algorithms.RSA_GenerateKeys(2048)
+	rsaPrivate, rsaPublic := algorithms.RSA_GenerateKeys(16384)
 	ecdsaPrivate, ecdsaPublic := algorithms.ECDSA_GenerateKeys()
 
-	userID := bytes.Join([][]byte{rsaPublic[12:24], ecdsaPublic[:12:24]}, nil)
+	userID := bytes.Join([][]byte{rsaPublic[12:24], ecdsaPublic[12:24]}, nil)
 
 	profile.EncryptionPublicKey = rsaPublic
 	profile.SignaturePublicKey = ecdsaPublic
