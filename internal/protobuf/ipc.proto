@@ -1,0 +1,34 @@
+syntax = "proto3";
+option go_package = "ipc/";
+
+message UserProfile {
+    bytes userID = 1;
+    string username = 2;
+    bytes EncryptionPrivateKey = 3;
+    bytes SignaturePrivateKey = 4;
+    bytes EncryptionPublicKey = 5;
+    bytes SignaturePublicKey = 6;
+    string avatarPhoto = 7;
+}
+
+service IPC {
+    rpc ReceiveMessage(ReceiveMessageRequest) returns (ReceiveMessageResponse);
+    rpc BroadcastProfileInformation(BroadcastProfileInformationRequest) returns (BroadcastProfileInformationResponse);
+};
+
+message ReceiveMessageRequest{
+    string message = 1;
+    bytes signature = 2;
+}
+
+message ReceiveMessageResponse{}
+
+message BroadcastProfileInformationRequest{}
+
+message BroadcastProfileInformationResponse{
+    bytes userID = 1;
+    string username = 2;
+    bytes SignaturePublicKey = 3;
+    bytes EncryptionPublicKey = 4;
+    string avatarPhoto = 5;
+}
