@@ -26,5 +26,5 @@ go.work.sum
 
 # config
 
-config/config.json
-go.mod
+backend/config/config.json
+backend/go.mod
